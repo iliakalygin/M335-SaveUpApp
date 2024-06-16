@@ -1,0 +1,20 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SaveUp.AboutPage"
+             Title="About">
+
+    <StackLayout Padding="20">
+        <Label Text="SaveUp"
+               FontSize="24"
+               HorizontalOptions="Center"
+               VerticalOptions="StartAndExpand" />
+        <Label Text="Version 1.0"
+               FontSize="18"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand" />
+        <Label Text="Diese App hilft Ihnen, Ihre kleinen Ausgaben zu verfolgen und zu sparen."
+               FontSize="14"
+               HorizontalOptions="Center"
+               VerticalOptions="EndAndExpand" />
+    </StackLayout>
+</ContentPage>
