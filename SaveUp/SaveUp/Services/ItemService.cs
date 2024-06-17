@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Maui.Storage;
-
 
 namespace SaveUp
 {
@@ -27,6 +27,18 @@ namespace SaveUp
             items.Add(item);
             var json = JsonSerializer.Serialize(items);
             await File.WriteAllTextAsync(FileName, json);
+        }
+
+        public static void DeleteItem(Item item)
+        {
+            var items = LoadItems();
+            var itemToDelete = items.FirstOrDefault(i => i.Description == item.Description && i.Price == item.Price && i.Date == item.Date);
+            if (itemToDelete != null)
+            {
+                items.Remove(itemToDelete);
+                var json = JsonSerializer.Serialize(items);
+                File.WriteAllText(FileName, json);
+            }
         }
 
         public static void ClearAllItems()

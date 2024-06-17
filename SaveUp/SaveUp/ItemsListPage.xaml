@@ -7,11 +7,23 @@
         <ListView ItemsSource="{Binding Items}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Description}" Detail="{Binding Price, StringFormat='Preis: {0:C}'}" />
+                    <ViewCell>
+                        <Grid Padding="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0" Orientation="Vertical">
+                                <Label Text="{Binding Description}" VerticalOptions="Center" />
+                                <Label Text="{Binding Price, StringFormat='Preis: {0:C}'}" VerticalOptions="Center" />
+                            </StackLayout>
+                            <Button Grid.Column="1" Text="Löschen" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsListViewModel}}, Path=DeleteItemCommand}" CommandParameter="{Binding .}" BackgroundColor="#502bd4" TextColor="White"/>
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Text="Alle löschen" Command="{Binding ClearAllCommand}" />
+        <Button Text="Alle löschen" Command="{Binding ClearAllCommand}" BackgroundColor="#502bd4" TextColor="White" />
     </StackLayout>
 </ContentPage>
