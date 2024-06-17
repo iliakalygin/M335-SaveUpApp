@@ -42,6 +42,12 @@ namespace SaveUp
             UpdateTotalSaved();
         }
 
+        public void UpdateItems()
+        {
+            Items = new ObservableCollection<Item>(ItemService.LoadItems());
+            UpdateTotalSaved();
+        }
+
         private void UpdateTotalSaved()
         {
             TotalSaved = Items.Sum(item => item.Price);
