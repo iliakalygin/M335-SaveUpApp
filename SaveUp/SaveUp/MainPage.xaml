@@ -33,7 +33,8 @@
         </StackLayout>
 
         <Label Text="{Binding TotalSaved, StringFormat='Gesamtsumme: {0:C}'}"
-               FontSize="18"
+               FontSize="24"
+               TextColor="Black"
                HorizontalOptions="Center"
                VerticalOptions="EndAndExpand" />
     </StackLayout>
