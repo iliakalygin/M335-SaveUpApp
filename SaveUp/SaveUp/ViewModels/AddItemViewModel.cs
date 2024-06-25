@@ -32,23 +32,31 @@ namespace SaveUp
         {
             if (decimal.TryParse(price, out decimal priceValue))
             {
-                var newItem = new Item
+                if (priceValue >= 0)
                 {
-                    Description = description,
-                    Price = priceValue,
-                    Date = DateTime.Now
-                };
+                    var newItem = new Item
+                    {
+                        Description = description,
+                        Price = priceValue,
+                        Date = DateTime.Now
+                    };
 
-                // Save item to a persistent storage (JSON)
-                await ItemService.SaveItemAsync(newItem);
+                    // Save item to a persistent storage (JSON)
+                    await ItemService.SaveItemAsync(newItem);
 
-                // Access MainViewModel and update items
-                if (Application.Current.MainPage.BindingContext is MainViewModel mainViewModel)
-                {
-                    mainViewModel.Items.Add(newItem);
+                    // Access MainViewModel and update items
+                    if (Application.Current.MainPage.BindingContext is MainViewModel mainViewModel)
+                    {
+                        mainViewModel.Items.Add(newItem);
+                    }
+
+                    await Shell.Current.GoToAsync("..");
                 }
-
-                await Shell.Current.GoToAsync("..");
+                else
+                {
+                    // Handle negative price input
+                    await Application.Current.MainPage.DisplayAlert("Fehler", "Der Preis darf nicht negativ sein", "OK");
+                }
             }
             else
             {
